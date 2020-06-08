@@ -636,19 +636,34 @@ class underscore(object):
         args.insert(0, self.obj)
         return self._wrap(_.uniq(self._flatten(args, True, [])))
 
+    # def intersection(self, *args):
+        # """
+        # Produce an array that contains every item shared between all the
+        # passed-in arrays.
+        # """
+        # if type(self.obj[0]) is int:
+            # a = self.obj
+        # else:
+            # a = tuple(self.obj[0])
+        # setobj = set(a)
+        # for i, v in enumerate(args):
+            # setobj = setobj & set(args[i])
+        # return self._wrap(list(setobj))
+    #ssmith
     def intersection(self, *args):
         """
         Produce an array that contains every item shared between all the
         passed-in arrays.
         """
-        if type(self.obj[0]) is int:
-            a = self.obj
-        else:
-            a = tuple(self.obj[0])
-        setobj = set(a)
+        # if type(self.obj[0]) is int:
+            # a = self.obj
+        # else:
+            # a = tuple(self.obj[0])
+        setobj = set(self.obj)
         for i, v in enumerate(args):
             setobj = setobj & set(args[i])
         return self._wrap(list(setobj))
+
 
     def difference(self, *args):
         """
