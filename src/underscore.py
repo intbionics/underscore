@@ -604,8 +604,21 @@ class underscore(object):
         ns.results = []
         ns.array = self.obj
         initial = self.obj
-        if iterator is not None:
-            initial = _(ns.array).map(iterator)
+
+        #ssmith
+        #this implementation is broken, should return the original objects when
+        #passing iterator, does not match underscore.js implementation
+        # if iterator is not None:
+            # initial = _(ns.array).map(iterator)
+        if iterator:
+            ret = []
+            uniqels = []
+            for el in initial:
+                v = iterator(el)
+                if v not in uniqels:
+                    uniqels.append(v)
+                    ret.append(el)
+            return ret
 
         def by(memo, value, index):
             if ((_.last(memo) != value or
