@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 import inspect
 from types import *
 import re
@@ -6,6 +6,10 @@ import functools
 import random
 import time
 from threading import Timer
+try:
+    from null import Null
+except:
+    Null = None
 
 
 class _IdCounter(object):
@@ -181,6 +185,21 @@ class underscore(object):
                     break
         return self._wrap(self)
     forEach = each
+
+    def get(self, path=None):
+        #ssmith
+        paths = path.split('.')
+        obj = self.obj
+        for path in paths:
+            if hasattr(obj, path):
+                obj = getattr(obj, path)
+                continue
+            if isinstance(obj, dict):
+                if path in obj.keys():
+                    obj = obj[path]
+                    continue
+            return Null
+        return obj
 
     def map(self, func):
         """ Return the results of applying the iterator to each element.
