@@ -30,5 +30,9 @@ print(_.get(o1,'c.d'))
 print(_.get(o1,'d'))
 print(_.get(o1,'e'))
 
+a = range(100)[::-1]
+print(a)
+print(_.find(a, lambda i,*a: i==10))
+print(_.findIndex(a, lambda i,*a: i==10))
 
 

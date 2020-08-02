@@ -261,6 +261,16 @@ class underscore(object):
         return self._wrap(self.ftmp)
     detect = find
 
+    def findIndex(self, func):
+        #ssmith
+        self.ftmp = None
+        def test(value, index, list):
+            if func(value, index, list) is True:
+                self.ftmp = index #return index
+                return True
+        self._clean.any(test)
+        return self._wrap(self.ftmp)
+
     def filter(self, func):
         """ Return all the elements that pass a truth test.
         """
@@ -681,6 +691,7 @@ class underscore(object):
         # for i, v in enumerate(args):
             # setobj = setobj & set(args[i])
         # return self._wrap(list(setobj))
+
     #ssmith
     def intersection(self, *args):
         """
