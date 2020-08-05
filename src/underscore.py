@@ -377,19 +377,25 @@ class underscore(object):
         """
         return self._wrap(self._clean.where(attrs, True))
 
-    def max(self):
+    def max(self, func=None):
         """ Return the maximum element or (element-based computation).
         """
         if(self._clean.isDict()):
             return self._wrap(list())
-        return self._wrap(max(self.obj))
+        if not func:
+            return self._wrap(max(self.obj))
+        #ssmith , min/max need to accept func!!
+        return self._wrap(_.last(_.sortBy(self.obj, func)))
 
-    def min(self):
+    def min(self, func):
         """ Return the minimum element (or element-based computation).
         """
         if(self._clean.isDict()):
             return self._wrap(list())
-        return self._wrap(min(self.obj))
+        if not func:
+            return self._wrap(min(self.obj))
+        #ssmith , min/max need to accept func!!
+        return self._wrap(_.first(_.sortBy(self.obj, func)))
 
     def shuffle(self):
         """ Shuffle an array.
@@ -623,7 +629,8 @@ class underscore(object):
 
         return self._wrap([pass_list, fail_list])
 
-    def uniq(self, isSorted=False, iterator=None):
+    def uniq(self, iterator=None):
+        isSorted = False
         """
         Produce a duplicate-free version of the array. If the array has already
         been sorted, you have the option of using a faster algorithm.
