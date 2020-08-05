@@ -387,7 +387,7 @@ class underscore(object):
         #ssmith , min/max need to accept func!!
         return self._wrap(_.last(_.sortBy(self.obj, func)))
 
-    def min(self, func):
+    def min(self, func=None):
         """ Return the minimum element (or element-based computation).
         """
         if(self._clean.isDict()):

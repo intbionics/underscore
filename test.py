@@ -19,8 +19,10 @@ print('sortBy')
 print(_.sortBy(a, lambda x,*a: x['hello']))
 print('max')
 print(_.max(a, lambda x,*a: x['hello']))
+print(_.max(range(10)))
 print('min')
 print(_.min(a, lambda x,*a: x['hello']))
+print(_.min(range(10)))
 
 
 class Obj1(object):
