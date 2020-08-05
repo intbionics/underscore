@@ -23,6 +23,14 @@ print(_.max(range(10)))
 print('min')
 print(_.min(a, lambda x,*a: x['hello']))
 print(_.min(range(10)))
+print('groupBy')
+print(_.groupBy(a, lambda x,*a: x['hello']))
+
+a = [
+    {'hello':2, 'world':1},
+]
+print('groupBy')
+print(_.groupBy(a, lambda x,*a: x['hello']))
 
 
 class Obj1(object):

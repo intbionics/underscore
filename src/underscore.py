@@ -440,11 +440,13 @@ class underscore(object):
 
         _.each(obj, e)
 
-        if len(ns.result) == 1:
-            try:
-                return ns.result[0]
-            except KeyError:
-                return list(ns.result.values())[0]
+        #ssmith, match underscore.js, always return dict don't flip to list!
+        # if len(ns.result) == 1:
+            # try:
+                # return ns.result[0]
+            # except KeyError:
+                # return ns.result.values() #ssmith, always return dict
+                # return list(ns.result.values())[0]
         return ns.result
 
     def groupBy(self, val):
@@ -452,6 +454,9 @@ class underscore(object):
         Groups the object's values by a criterion. Pass either a string
         attribute to group by, or a function that returns the criterion.
         """
+
+        #ssmith, should ALWAYS return a dictionary, not sometimes list!
+        #modified _group
 
         def by(result, key, value):
             if key not in result:
